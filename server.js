@@ -1,12 +1,14 @@
 const path = require('path');
 const http = require('http');
 const express = require("express");
-
-const PORT = process.env.PORT;
-const publicDirpath = path.join(__dirname, './public');
+const socketio = require('socket.io');
 
 const app = express();
 const server = http.createServer(app);
+const io = socketio(server);
+
+const PORT = process.env.PORT;
+const publicDirpath = path.join(__dirname, './public');
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(publicDirpath));
